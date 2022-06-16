@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MVI Test Project</string>
+    <string name="next_fact_button_label">Next Fact</string>
+    <string name="fact_title_text">Facts About\nChuck Norris</string>
+    <string name="ok_label">Okay</string>
+    <string name="error_dialog_title">Chuck Occurred To The Error!</string>
+</resources>
