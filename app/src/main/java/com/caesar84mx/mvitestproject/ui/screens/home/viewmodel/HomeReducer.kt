@@ -1,10 +1,7 @@
 package com.caesar84mx.mvitestproject.ui.screens.home.viewmodel
 
 import com.caesar84mx.mvitestproject.abstracts.Reducer
-import com.caesar84mx.mvitestproject.ui.screens.home.viewmodel.HomeEvent.OnNewFactClick
-import com.caesar84mx.mvitestproject.ui.screens.home.viewmodel.HomeEvent.ShowFact
-import com.caesar84mx.mvitestproject.ui.screens.home.viewmodel.HomeEvent.ShowError
-import com.caesar84mx.mvitestproject.ui.screens.home.viewmodel.HomeEvent.OnAlertDismiss
+import com.caesar84mx.mvitestproject.ui.screens.home.viewmodel.HomeEvent.*
 
 class HomeReducer(initial: HomeState): Reducer<HomeState, HomeEvent>(initial) {
     override fun reduce(oldState: HomeState, event: HomeEvent) {
@@ -12,6 +9,17 @@ class HomeReducer(initial: HomeState): Reducer<HomeState, HomeEvent>(initial) {
             OnNewFactClick -> {
                 setState(oldState.copy(isLoading = true))
             }
+
+            OnAlertDismiss -> {
+                setState(
+                    oldState.copy(
+                        isLoading = false,
+                        isError = false,
+                        message = null
+                    )
+                )
+            }
+
             is ShowFact -> {
                 setState(
                     oldState.copy(
@@ -29,15 +37,6 @@ class HomeReducer(initial: HomeState): Reducer<HomeState, HomeEvent>(initial) {
                         isLoading = false,
                         isError = true,
                         message = event.message
-                    )
-                )
-            }
-            is OnAlertDismiss -> {
-                setState(
-                    oldState.copy(
-                        isLoading = false,
-                        isError = false,
-                        message = null
                     )
                 )
             }
